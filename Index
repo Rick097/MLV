@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Minha Loja Virtual</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header>
+    <h1>Minha Loja Virtual</h1>
+    <body>
+
+  <header>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="search.html">Pesquisar</a></li>
+      </ul>
+    </nav>
+    <h1>Minha Loja Virtual</h1>
+  </header>
+  </header>
+
+  <main>
+    <section id="featured-products">
+      <h2>Produtos em Destaque</h2>
+      <div id="product-list"></div>
+      <div id="pagination"></div>
+    </section>
+    
+    <section id="categories">
+      <h2>Categorias</h2>
+      <ul id="category-list"></ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2023 Minha Loja Virtual</p>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
+

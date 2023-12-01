@@ -1,0 +1,67 @@
+document.addEventListener('DOMContentLoaded', function () {
+    const productList = document.getElementById('product-list');
+    const categoryList = document.getElementById('category-list');
+    const paginationContainer = document.getElementById('pagination');
+  
+    // Variáveis de controle da paginação
+    let currentPage = 1;
+    const itemsPerPage = 5;
+  
+    // Função para carregar produtos com paginação
+    function loadProducts(page) {
+      fetch(`https://fakestoreapi.com/products?page=${page}&page_items=${itemsPerPage}`)
+        .then(response => response.json())
+        .then(products => displayProducts(products));
+    }
+  
+    // Função para exibir produtos
+    function displayProducts(products) {
+      productList.innerHTML = '';
+      products.forEach(product => {
+        const productItem = document.createElement('div');
+        productItem.innerHTML = `
+          <img src="${product.image}" alt="${product.title}">
+          <h3>${product.title}</h3>
+          <p>${product.description}</p>
+          <a href="details.html?id=${product.id}">Ver Detalhes</a>
+        `;
+        productList.appendChild(productItem);
+      });
+    }
+  
+    // Função para carregar categorias
+    function loadCategories() {
+      fetch('https://fakestoreapi.com/products/categories')
+        .then(response => response.json())
+        .then(categories => displayCategories(categories));
+    }
+  
+    // Função para exibir categorias
+    function displayCategories(categories) {
+      categoryList.innerHTML = '';
+      categories.forEach(category => {
+        const categoryItem = document.createElement('li');
+        categoryItem.textContent = category;
+        categoryList.appendChild(categoryItem);
+      });
+    }
+  
+    // Função para criar links de paginação
+    function createPaginationLinks(totalPages) {
+      paginationContainer.innerHTML = '';
+      for (let i = 1; i <= totalPages; i++) {
+        const link = document.createElement('a');
+        link.href = '#';
+        link.textContent = i;
+        link.addEventListener('click', function () {
+          currentPage = i;
+          loadProducts(currentPage);
+        });
+        paginationContainer.appendChild(link);
+      }
+    }
+  
+    // Inicializar a página com produtos e categorias
+    loadProducts(currentPage);
+    loadCategories();
+  });
